@@ -1,1 +1,1 @@
-# 04-introduccion-a-react
+# Módulo 6 - Introducción a React
