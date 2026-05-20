@@ -1,4 +1,6 @@
-
+import check from "../assets/check.png"
+import followers from "../assets/followers.png"
+import Stats from "./Stats"
 
 
 type CardTypeProps = {
@@ -25,9 +27,18 @@ function Card( {nombre,mensaje,imagen}: CardTypeProps) {
 
         </div>
 
-        <button className="bg-linear-to-b from-white to-gray-100 mt-9 py-2 px-5 rounded-4xl border border-[#bdc6c5] cursor-pointer self-end mr-4 font-medium ">
+        <div className="flex w-full items-center mt-9 justify-around">
+
+            <div className="flex gap-3">
+              <Stats icon={followers} count={2} />
+              <Stats icon={check} count={2} />
+            </div>
+
+            <button className="bg-linear-to-b from-white to-gray-100  py-2 px-5 rounded-4xl border border-[#bdc6c5] cursor-pointer  font-medium ">
           Seguir +
         </button>
+
+        </div>
 
     </div>
   )
