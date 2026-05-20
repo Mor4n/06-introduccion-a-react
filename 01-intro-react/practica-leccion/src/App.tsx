@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Card from "./components/Card";
-import pfp from "./assets/pfp.jpg"
+import pfp from "./assets/pfp.png"
 
 function App() {
 
 
   return (
-    <div className="bg-[#F5F5F5]">
+    <div className="flex justify-center">
 
       <Card
-        nombre={"Brayan"}
-        profesion={"Estudiante"}
+        nombre={"Reyna"}
         mensaje={"Holaaa 🐱!"}
         imagen={pfp}
         
