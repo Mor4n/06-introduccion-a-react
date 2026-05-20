@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Card from "./components/Card";
 import pfp from "./assets/pfp.png"
 
