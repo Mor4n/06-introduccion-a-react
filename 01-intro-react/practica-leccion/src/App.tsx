@@ -1,11 +1,19 @@
+import { useState } from "react";
 import Card from "./components/Card";
 
 
 function App() {
 
+
   return (
     <>
-      <Card/>
+      <Card
+        nombre={"Brayan"}
+        profesion={"Estudiante"}
+        mensaje={"Holaaa 🐱!"}
+        
+
+      />
     </>
   )
 }
