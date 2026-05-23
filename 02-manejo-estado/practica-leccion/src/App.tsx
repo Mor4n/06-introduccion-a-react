@@ -67,7 +67,7 @@ function App() {
   return (
    <>
 
-        <Header/>
+        <Header cart={cart}/>
 
         <main className="flex flex-row flex-wrap items-center gap-8 p-6">
 
