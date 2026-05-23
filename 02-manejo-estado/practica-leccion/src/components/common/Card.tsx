@@ -1,4 +1,5 @@
-import type { ProductType } from "../../type/types"
+import formatCurrency from "../../helpers";
+import type { ProductType } from "../../type"
 
 type ProductTypeProps = {
     item: ProductType,
@@ -19,7 +20,7 @@ function Card({ item, addToCart }: ProductTypeProps) {
             <div className="space-y-3 p-4">
                 <div className="flex items-start justify-between gap-4">
                     <h2 className="text-sm font-semibold leading-snug text-slate-900">{title}</h2>
-                    <h3 className="shrink-0 text-sm font-bold text-slate-900">${price}</h3>
+                    <h3 className="shrink-0 text-sm font-bold text-slate-900">{formatCurrency(price)}</h3>
                 </div>
 
                 <button
