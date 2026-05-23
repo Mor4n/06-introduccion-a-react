@@ -4,9 +4,10 @@ import type { CartItemType } from "../type";
 
 type CartProps = {
   cart: CartItemType[];
+  onRemove?: (id: number) => void;
 };
 
-function Cart({ cart }: CartProps) {
+function Cart({ cart, onRemove }: CartProps) {
   const isEmpty = cart.length === 0;
 
   return (
@@ -37,10 +38,26 @@ function Cart({ cart }: CartProps) {
                   </p>
                 </div>
 
-                <div className="text-right">
-                  <p className="text-sm font-semibold text-slate-900">
-                    {formatCurrency(item.price * item.quantity)}
-                  </p>
+                <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <p className="text-sm font-semibold text-slate-900">
+                      {formatCurrency(item.price)} x {item.quantity}
+                    </p>
+                  </div>
+
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => onRemove?.(item.id)}
+                      className="rounded-full p-2  cursor-pointer"
+                      aria-label={`Eliminar ${item.title}`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path fill="#ff0101" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}

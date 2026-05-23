@@ -3,9 +3,10 @@ import type { CartItemType } from "../type";
 
 type HeaderTypeProps = {
   cart: CartItemType[];
+  removeFromCart: (id: number) => void;
 };
 
-function Header({ cart }: HeaderTypeProps) {
+function Header({ cart, removeFromCart }: HeaderTypeProps) {
   return (
     <header className="border-b border-slate-200 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -29,7 +30,7 @@ function Header({ cart }: HeaderTypeProps) {
             <span>Ver carrito</span>
           </button>
 
-          <Cart cart={cart} />
+          <Cart cart={cart} onRemove={removeFromCart} />
         </div>
       </div>
     </header>

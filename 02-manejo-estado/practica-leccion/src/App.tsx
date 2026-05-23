@@ -62,12 +62,16 @@ function App() {
 
   }
 
+  function removeFromCart(productId: number) {
+    setCart(prev => prev.filter(item => item.id !== productId));
+  }
+
 
 
   return (
    <>
 
-        <Header cart={cart}/>
+        <Header cart={cart} removeFromCart={removeFromCart} />
 
         <main className="flex flex-row flex-wrap items-center gap-8 p-6">
 
