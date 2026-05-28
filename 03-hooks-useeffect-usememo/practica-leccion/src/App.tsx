@@ -3,6 +3,13 @@ import type { TareasType } from "./types";
 
 type FiltroTareas = "todas" | "cortas" | "medias" | "largas";
 
+const notasPostIt = [
+  "bg-amber-200",
+  "bg-emerald-200",
+  "bg-sky-200",
+  "bg-pink-200",
+];
+
 
 
 function App() {
@@ -122,21 +129,27 @@ function App() {
               No hay tareas coincidentes con este filtro
             </p>
           ) : (
-            <ul className="space-y-3">
-              {tareasFiltradas.map((tarea, index) => (
-                <li
-                  key={index}
-                  className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200"
-                >
-                  <span className="font-medium text-slate-700">
-                    {tarea.nombre}
-                  </span>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {tareasFiltradas.map((tarea, index) => {
+                const colorPostIt = notasPostIt[index % notasPostIt.length];
 
-                  <span className="text-sm font-semibold">
-                    {tarea.duracion} min
-                  </span>
-                </li>
-              ))}
+                return (
+                  <li
+                    key={index}
+                    className={`${colorPostIt} min-h-28 rounded-xl p-4 border border-black/10 shadow-sm`}
+                  >
+                    <div className="flex h-full flex-col justify-between gap-4">
+                      <span className="text-base font-semibold text-slate-800 leading-tight wrap-break-word">
+                        {tarea.nombre}
+                      </span>
+
+                      <span className="self-start text-sm font-bold text-slate-700">
+                        {tarea.duracion} min
+                      </span>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
