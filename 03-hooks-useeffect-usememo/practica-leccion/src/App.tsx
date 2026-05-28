@@ -1,5 +1,8 @@
-import { useState,useMemo,useEffect } from "react"
+import { useState, useMemo, useEffect } from "react"
 import type { TareasType } from "./types";
+
+type FiltroTareas = "todas" | "cortas" | "medias" | "largas";
+
 
 
 function App() {
@@ -8,14 +11,29 @@ function App() {
   const [tareas, setTareas] = useState<TareasType[]>([]);
   const [nuevaTarea,setNuevaTarea] = useState("");
   const [duracion, setDuracion] = useState('');
+  const [filtro, setFiltro] = useState<FiltroTareas>("todas");
 
- 
 
   // Cálculo de tiempo total optimizado con useMemo
   const calcularTiempoTotal = useMemo(() => {
     console.log("Calculando tiempo total...");
     return tareas.reduce((total, tarea) => total + tarea.duracion, 0);
   }, [tareas]); // Solo se recalcula cuando cambian las tareas
+
+  const tareasFiltradas = useMemo(() => {
+    return tareas.filter((tarea) => {
+      switch (filtro) {
+        case "cortas":
+          return tarea.duracion <= 30;
+        case "medias":
+          return tarea.duracion > 30 && tarea.duracion <= 60;
+        case "largas":
+          return tarea.duracion > 60;
+        default:
+          return true;
+      }
+    });
+  }, [tareas, filtro]);
 
    useEffect(() => {
     document.title = `Total: ${calcularTiempoTotal} minutos`;
@@ -60,20 +78,66 @@ function App() {
 
           <button
             onClick={agregarTarea}
-            className="bg-blue-500 cursor-pointer text-white font-semibold px-6 py-3 rounded-xl "
+            className="bg-green-500 cursor-pointer text-white font-semibold px-6 py-3 rounded-xl "
           >
             Agregar
           </button>
         </div>
 
-      <h2>Tareas</h2>
-      <ul>
-        {tareas.map((tarea, index) => (
-          <li key={index}>{tarea.nombre}: {tarea.duracion} minutos</li>
-        ))}
-      </ul>
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-3 ">
+          <label htmlFor="filtro-tareas" className="text-sm font-semibold text-slate-600">
+            Filtrar tareas:
+          </label>
 
-      <h3>Total de tiempo: {calcularTiempoTotal} minutos</h3>
+          <select
+            id="filtro-tareas"
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value as FiltroTareas)}
+            className="w-full sm:w-auto px-4 py-3 rounded-xl border border-slate-300 bg-white"
+          >
+            <option value="todas">Todas</option>
+            <option value="cortas">Cortas (30 min o menos)</option>
+            <option value="medias">Medias (31 - 60 min)</option>
+            <option value="largas">Largas (60 min o más)</option>
+          </select>
+        </div>
+
+       <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+          <h2 className="text-2xl font-semibold text-slate-700 mb-4">
+            Tareas
+          </h2>
+
+          {tareasFiltradas.length === 0 ? (
+            <p className="text-slate-500 text-center">
+              No hay tareas coincidentes con este filtro
+            </p>
+          ) : (
+            <ul className="space-y-3">
+              {tareasFiltradas.map((tarea, index) => (
+                <li
+                  key={index}
+                  className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200"
+                >
+                  <span className="font-medium text-slate-700">
+                    {tarea.nombre}
+                  </span>
+
+                  <span className="text-sm font-semibold">
+                    {tarea.duracion} min
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+
+      <div className="mt-6 text-center">
+          <h3 className="text-xl font-bold text-slate-800">
+            Total de tiempo:{" "}
+            <span className="text-blue-600">{calcularTiempoTotal} minutos</span>
+          </h3>
+        </div>
     </div>
     </div>
   )
