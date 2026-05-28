@@ -8,10 +8,20 @@ type FiltroTareas = "todas" | "cortas" | "medias" | "largas";
 function App() {
 
   
-  const [tareas, setTareas] = useState<TareasType[]>([]);
+  const [tareas, setTareas] = useState<TareasType[]>(() => {
+    const tareasGuardadas = localStorage.getItem("tareas");
+
+    return tareasGuardadas
+      ? JSON.parse(tareasGuardadas)
+      : [];
+  });
   const [nuevaTarea,setNuevaTarea] = useState("");
   const [duracion, setDuracion] = useState('');
   const [filtro, setFiltro] = useState<FiltroTareas>("todas");
+
+  useEffect(() => {
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+  }, [tareas]);
 
 
   // Cálculo de tiempo total optimizado con useMemo
