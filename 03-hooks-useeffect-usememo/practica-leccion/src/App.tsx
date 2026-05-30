@@ -82,7 +82,7 @@ function App() {
             value={nuevaTarea}
             onChange={(e) => setNuevaTarea(e.target.value)}
             placeholder="Nombre de la tarea"
-            className="flex-1 px-4 py-3 rounded-xl border border-slate-300 "
+            className="flex-1 px-4 py-3 rounded-full border border-slate-300 "
           />
 
           <input
@@ -90,12 +90,12 @@ function App() {
             value={duracion}
             onChange={(e) => setDuracion(e.target.value)}
             placeholder="Duración"
-            className="w-full md:w-40 px-4 py-3 rounded-xl border border-slate-300"
+            className="w-full md:w-40 px-4 py-3 rounded-full border border-slate-300"
           />
 
           <button
             onClick={agregarTarea}
-            className="bg-green-500 cursor-pointer text-white font-semibold px-6 py-3 rounded-xl "
+            className="bg-green-500 cursor-pointer text-white font-semibold px-5 rounded-full "
           >
             Agregar
           </button>
@@ -110,7 +110,7 @@ function App() {
             id="filtro-tareas"
             value={filtro}
             onChange={(e) => setFiltro(e.target.value as FiltroTareas)}
-            className="w-full sm:w-auto px-4 py-3 rounded-xl border border-slate-300 bg-white"
+            className="w-full sm:w-auto px-4 py-3 rounded-full border border-slate-300 bg-white"
           >
             <option value="todas">Todas</option>
             <option value="cortas">Cortas (30 min o menos)</option>
@@ -119,7 +119,7 @@ function App() {
           </select>
         </div>
 
-       <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+       <div className=" p-6 ">
           <h2 className="text-2xl font-semibold text-slate-700 mb-4">
             Tareas
           </h2>
