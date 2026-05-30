@@ -10,6 +10,8 @@ function App() {
   const [planetasVisitados, setPlanetasVisitados] = useState([]);
 
 
+
+
   // En strictmode useEffect se ejecuta 2 veces para detectar efectos secundarios
   useEffect(() => {
     
@@ -37,6 +39,13 @@ function App() {
   useEffect(() => {
     console.log("¡Combustible actualizado!"); 
   }, [combustible]);
+
+
+
+  const mensajeEstado = useMemo(() =>{ 
+    return `Estado actual: ${estadoNave}`
+  
+  }, [estadoNave]);
 
   
 
