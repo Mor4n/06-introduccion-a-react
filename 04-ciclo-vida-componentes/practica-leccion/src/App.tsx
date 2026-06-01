@@ -5,6 +5,22 @@ import Formulario from './components/Formulario';
 import type { PlanetaRegistrado } from './types';
 
 
+const obtenerPlanetasGuardados = (): PlanetaRegistrado[] => {
+
+  const planetasGuardados = localStorage.getItem('planetas-registrados');
+
+  if (!planetasGuardados) {
+    return [];
+  }
+
+  try {
+    return JSON.parse(planetasGuardados) as PlanetaRegistrado[];
+  } catch {
+    return [];
+  }
+};
+
+
 
 
 function App() {
@@ -13,7 +29,7 @@ function App() {
   const [combustible, setCombustible] = useState(100);
   const [estadoNave, setEstadoNave] = useState('En órbita');
   const [planetasVisitados, setPlanetasVisitados] = useState<string[]>([]);
-  const [planetasRegistrados, setPlanetasRegistrados] = useState<PlanetaRegistrado[]>([]);
+  const [planetasRegistrados, setPlanetasRegistrados] = useState<PlanetaRegistrado[]>(obtenerPlanetasGuardados);
 
 
 
@@ -72,6 +88,10 @@ function App() {
       },
     ]);
   };
+
+  useEffect(() => {
+    localStorage.setItem('planetas-registrados', JSON.stringify(planetasRegistrados));
+  }, [planetasRegistrados]);
 
   return (
     <>
