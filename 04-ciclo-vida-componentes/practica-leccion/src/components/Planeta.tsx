@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 
 type PlanetaProps = {
   nombre: string;
+  descripcion?: string;
 };
 
-function Planeta({ nombre }: PlanetaProps) {
+function Planeta({ nombre, descripcion }: PlanetaProps) {
   useEffect(() => {
     console.log(`¡El planeta ${nombre} ha aparecido!`);
 
@@ -14,7 +15,10 @@ function Planeta({ nombre }: PlanetaProps) {
   }, [nombre]);
 
   return (
-    <div>{nombre}</div>
+    <div>
+      <h3>{nombre}</h3>
+      {descripcion ? <p>{descripcion}</p> : null}
+    </div>
   );
 }
 

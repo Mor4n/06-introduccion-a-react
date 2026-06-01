@@ -1,6 +1,10 @@
 
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Planeta from './components/Planeta';
+import Formulario from './components/Formulario';
+import type { PlanetaRegistrado } from './types';
+
+
 
 
 function App() {
@@ -9,6 +13,7 @@ function App() {
   const [combustible, setCombustible] = useState(100);
   const [estadoNave, setEstadoNave] = useState('En órbita');
   const [planetasVisitados, setPlanetasVisitados] = useState<string[]>([]);
+  const [planetasRegistrados, setPlanetasRegistrados] = useState<PlanetaRegistrado[]>([]);
 
 
 
@@ -57,6 +62,17 @@ function App() {
 
   };
 
+  // omit quiero todo excepto el id
+  const handleAgregarPlaneta = (nuevoPlaneta: Omit<PlanetaRegistrado, 'id'>) => {
+    setPlanetasRegistrados((prevState) => [
+      ...prevState,
+      {
+        id: crypto.randomUUID(),
+        ...nuevoPlaneta,
+      },
+    ]);
+  };
+
   return (
     <>
       <h1>Panel de control</h1>
@@ -71,6 +87,23 @@ function App() {
         <p>Aun no hay planetas visitados.</p>
       ) : (
         planetasVisitados.map((nombre) => <Planeta key={nombre} nombre={nombre} />)
+      )}
+
+
+      <h2>Registro de planetas</h2>
+      <Formulario onAgregarPlaneta={handleAgregarPlaneta} />
+
+      <h2>Planetas registrados</h2>
+      {planetasRegistrados.length === 0 ? (
+        <p>Aun no hay planetas registrados.</p>
+      ) : (
+        planetasRegistrados.map((planeta) => (
+          <Planeta
+            key={planeta.id}
+            nombre={planeta.nombre}
+            descripcion={planeta.descripcion}
+          />
+        ))
       )}
     </>
   );
