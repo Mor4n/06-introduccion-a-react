@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Planeta from './components/Planeta';
 import Formulario from './components/Formulario';
 import type { PlanetaRegistrado } from './types';
+import PlanetasRegistrados from './components/PlanetasRegistrados';
 
 
 const obtenerPlanetasGuardados = (): PlanetaRegistrado[] => {
@@ -30,6 +31,7 @@ function App() {
   const [estadoNave, setEstadoNave] = useState('En órbita');
   const [planetasVisitados, setPlanetasVisitados] = useState<string[]>([]);
   const [planetasRegistrados, setPlanetasRegistrados] = useState<PlanetaRegistrado[]>(obtenerPlanetasGuardados);
+  const [planetaSeleccionado, setPlanetaSeleccionado] = useState<PlanetaRegistrado | null>(null);
 
 
 
@@ -80,13 +82,41 @@ function App() {
 
   // omit quiero todo excepto el id
   const handleAgregarPlaneta = (nuevoPlaneta: Omit<PlanetaRegistrado, 'id'>) => {
+    const planetaCreado = {
+      id: crypto.randomUUID(),
+      ...nuevoPlaneta,
+    };
+
     setPlanetasRegistrados((prevState) => [
       ...prevState,
-      {
-        id: crypto.randomUUID(),
-        ...nuevoPlaneta,
-      },
+      planetaCreado,
     ]);
+
+    setPlanetaSeleccionado(planetaCreado);
+  };
+
+  const handleEditarPlaneta = (planeta: PlanetaRegistrado) => {
+    const nuevoNombre = window.prompt('Nuevo nombre del planeta', planeta.nombre);
+    if (nuevoNombre === null) return; // usuario canceló
+    const nuevaDescripcion = window.prompt('Nueva descripción', planeta.descripcion);
+    if (nuevaDescripcion === null) return;
+
+    const actualizado: PlanetaRegistrado = {
+      ...planeta,
+      nombre: nuevoNombre.trim() || planeta.nombre,
+      descripcion: nuevaDescripcion.trim() || planeta.descripcion,
+    };
+
+    setPlanetasRegistrados((prevState) => prevState.map((p) => (p.id === planeta.id ? actualizado : p)));
+    setPlanetaSeleccionado(actualizado);
+  };
+
+  const handleEliminarPlaneta = (id: string) => {
+    const confirmar = window.confirm('¿Estás seguro que quieres eliminar este planeta de la bitácora?');
+    if (!confirmar) return;
+
+    setPlanetasRegistrados((prevState) => prevState.filter((p) => p.id !== id));
+    setPlanetaSeleccionado((prev) => (prev && prev.id === id ? null : prev));
   };
 
   useEffect(() => {
@@ -113,17 +143,26 @@ function App() {
       <h2>Registro de planetas</h2>
       <Formulario onAgregarPlaneta={handleAgregarPlaneta} />
 
-      <h2>Planetas registrados</h2>
+      <h2>Bitácora de planetas</h2>
       {planetasRegistrados.length === 0 ? (
-        <p>Aun no hay planetas registrados.</p>
+        <p>Aun no hay planetas en la bitácora.</p>
       ) : (
-        planetasRegistrados.map((planeta) => (
-          <Planeta
-            key={planeta.id}
-            nombre={planeta.nombre}
-            descripcion={planeta.descripcion}
-          />
-        ))
+        <PlanetasRegistrados
+          planetasRegistrados={planetasRegistrados}
+          setPlanetaSeleccionado={setPlanetaSeleccionado}
+          onEditar={handleEditarPlaneta}
+          onEliminar={handleEliminarPlaneta}
+        />
+      )}
+
+      <h2>Detalle del planeta</h2>
+      {planetaSeleccionado ? (
+        <Planeta
+          nombre={planetaSeleccionado.nombre}
+          descripcion={planetaSeleccionado.descripcion}
+        />
+      ) : (
+        <p>Selecciona un planeta para ver su descripción detallada.</p>
       )}
     </>
   );
