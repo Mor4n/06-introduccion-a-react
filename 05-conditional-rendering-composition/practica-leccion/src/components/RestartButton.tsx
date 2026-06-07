@@ -1,8 +1,16 @@
 import React from 'react'
 
-function RestartButton() {
+type Props = {
+
+  generarNumAleatorio: ()=> void;
+
+}
+
+function RestartButton({generarNumAleatorio}:Props) {
+
+
   return (
-    <div></div>
+    <button className="cursor-pointer"onClick={()=>generarNumAleatorio()}>Reiniciar juego</button>
   )
 }
 

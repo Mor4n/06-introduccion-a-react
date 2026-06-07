@@ -2,14 +2,14 @@ import { useState,useEffect } from "react";
 import confetti from 'canvas-confetti';
 import InputNumber from "./InputNumber";
 import Message from "./Message";
+import RestartButton from './RestartButton';
 
 
 
 function Game() {
 
-  const numeroAleatorio = Math.floor(Math.random() * 100) + 1; 
-
-  const [numAleatorio] = useState(numeroAleatorio);
+  
+  const [numAleatorio,setNumAleatorio] = useState(0);
   const [numAdivinado, setnumAdivinado] = useState(0);
 
   const [message, setMessage] = useState("Que empiece el juego!");
@@ -17,7 +17,6 @@ function Game() {
 
 
 
-  // Poner
   function handleAdivinar() {
 
     if (!Number.isInteger(numAdivinado) || numAdivinado < 1 || numAdivinado > 100) {
@@ -47,6 +46,21 @@ function Game() {
       
     }
 
+  function generarNumAleatorio() {
+    
+    setNumAleatorio(Math.floor(Math.random() * 100) + 1) 
+
+    setMessage("Que empiece el juego!");
+
+  }
+
+
+    useEffect(() => {
+      generarNumAleatorio();
+      
+    }, [])
+    
+
 
 
   return (
@@ -55,6 +69,7 @@ function Game() {
         <InputNumber  setnumAdivinado={setnumAdivinado}/>
         <button onClick={handleAdivinar}>Adivinar</button>
         <Message msg={message}/>
+        <RestartButton generarNumAleatorio={generarNumAleatorio}/>
     </>
   )
 }
