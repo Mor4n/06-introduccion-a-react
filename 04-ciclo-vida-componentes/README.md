@@ -35,6 +35,7 @@ Imagina que eres un explorador espacial que construye un panel de control para t
 
 ## Tecnologias
 
+- React
 - Vite
 - Typescript
 - TailwindCSS
@@ -50,6 +51,12 @@ Imagina que eres un explorador espacial que construye un panel de control para t
 A continuación se muestra una captura de pantalla del proyecto funcionando:
 
 ![Captura del proyecto](./capturas/Captura1.png)
+![Captura del proyecto](./capturas/Captura2.png)
+![Captura del proyecto](./capturas/Captura3.png)
+![Captura del proyecto](./capturas/Captura4.png)
+![Captura del proyecto](./capturas/Captura5.png)
+![Captura del proyecto](./capturas/Captura6.png)
+![Captura del proyecto](./capturas/Captura7.png)
 
 
 ## Ejemplo de uso
@@ -78,8 +85,8 @@ npm run dev
 ## Despliegue
 
 Se desplegó en Github Pages a partir de este repositorio, puedes ver la página a través del siguiente link:
-https://mor4n.github.io/06-introduccion-a-react/04-ciclo-vida-componentes
+https://fantastic-faun-444d1a.netlify.app/
 
 ## Como conclusión personal:
 
-
+En esta práctica pude aprender sobre el ciclo de vida de los componentes de React, fue un tema que estuvimos viendo en clase y al principio se me hacía complicado de entender, pero al momento que estuve viendo con más calma los ejercicios que estuvimos viendo en clase, fue que lo logré entender más en conjunto con esta práctica :'D

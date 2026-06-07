@@ -124,47 +124,83 @@ function App() {
   }, [planetasRegistrados]);
 
   return (
-    <>
-      <h1>Panel de control</h1>
-      <p>Distancia: {distancia}</p>
-      <p>Combustible: {combustible}</p>
-      <p>{mensajeEstado}</p>
+    <main className="min-h-screen px-4 py-8 text-slate-900">
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-5 bg-white p-6">
+        
 
-      <button onClick={handleAterrizar}>Aterrizar</button>
+        <section className="grid gap-3 sm:grid-cols-3">
+          <div className="p-4">
+            <p className="text-xs uppercase text-slate-500">Distancia</p>
+            <p className="mt-2 text-2xl font-semibold">{distancia}</p>
+          </div>
+          <div className="p-4">
+            <p className="text-xs uppercase text-slate-500">Combustible</p>
+            <p className="mt-2 text-2xl font-semibold">{combustible}</p>
+          </div>
+          <div className="p-4">
+            <p className="text-xs uppercase text-slate-500">Estado</p>
+            <p className="mt-2 font-medium">{mensajeEstado}</p>
+          </div>
+        </section>
 
-      <h2>Planetas visitados</h2>
-      {planetasVisitados.length === 0 ? (
-        <p>Aun no hay planetas visitados.</p>
-      ) : (
-        planetasVisitados.map((nombre) => <Planeta key={nombre} nombre={nombre} />)
-      )}
+        <div>
+          <button
+            onClick={handleAterrizar}
+            className="bg-slate-900 px-4 py-2 text-sm font-medium text-white cursor-pointer"
+          >
+            Aterrizar
+          </button>
+        </div>
 
+        <section className="grid gap-6 lg:grid-cols-2">
+          <div className="space-y-3 p-4">
+            <h2 className="text-lg font-semibold">Planetas visitados</h2>
+            {planetasVisitados.length === 0 ? (
+              <p className="text-sm text-slate-600">Aun no hay planetas visitados.</p>
+            ) : (
+              <div className="space-y-2">
+                {planetasVisitados.map((nombre) => (
+                  <Planeta key={nombre} nombre={nombre} />
+                ))}
+              </div>
+            )}
+          </div>
 
-      <h2>Registro de planetas</h2>
-      <Formulario onAgregarPlaneta={handleAgregarPlaneta} />
+          <div className="space-y-3 p-4">
+            <h2 className="text-lg font-semibold">Registro de planetas</h2>
+            <Formulario onAgregarPlaneta={handleAgregarPlaneta} />
+          </div>
+        </section>
 
-      <h2>Bitácora de planetas</h2>
-      {planetasRegistrados.length === 0 ? (
-        <p>Aun no hay planetas en la bitácora.</p>
-      ) : (
-        <PlanetasRegistrados
-          planetasRegistrados={planetasRegistrados}
-          setPlanetaSeleccionado={setPlanetaSeleccionado}
-          onEditar={handleEditarPlaneta}
-          onEliminar={handleEliminarPlaneta}
-        />
-      )}
+        <section className="grid gap-6 lg:grid-cols-2">
+          <div className="space-y-3 p-4">
+            <h2 className="text-lg font-semibold">Bitácora de planetas</h2>
+            {planetasRegistrados.length === 0 ? (
+              <p className="text-sm text-slate-600">Aun no hay planetas en la bitácora.</p>
+            ) : (
+              <PlanetasRegistrados
+                planetasRegistrados={planetasRegistrados}
+                setPlanetaSeleccionado={setPlanetaSeleccionado}
+                onEditar={handleEditarPlaneta}
+                onEliminar={handleEliminarPlaneta}
+              />
+            )}
+          </div>
 
-      <h2>Detalle del planeta</h2>
-      {planetaSeleccionado ? (
-        <Planeta
-          nombre={planetaSeleccionado.nombre}
-          descripcion={planetaSeleccionado.descripcion}
-        />
-      ) : (
-        <p>Selecciona un planeta para ver su descripción detallada.</p>
-      )}
-    </>
+          <div className="space-y-3 p-4">
+            <h2 className="text-lg font-semibold">Detalle del planeta</h2>
+            {planetaSeleccionado ? (
+              <Planeta
+                nombre={planetaSeleccionado.nombre}
+                descripcion={planetaSeleccionado.descripcion}
+              />
+            ) : (
+              <p className="text-sm text-slate-600">Selecciona un planeta para ver su descripción detallada.</p>
+            )}
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
 

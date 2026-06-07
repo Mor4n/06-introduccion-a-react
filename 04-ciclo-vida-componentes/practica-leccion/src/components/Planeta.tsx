@@ -15,9 +15,9 @@ function Planeta({ nombre, descripcion }: PlanetaProps) {
   }, [nombre]);
 
   return (
-    <div>
-      <h3>{nombre}</h3>
-      {descripcion ? <p>{descripcion}</p> : null}
+    <div className=" p-3">
+      <h3 className="font-medium text-slate-900">{nombre}</h3>
+      {descripcion ? <p className="mt-1 text-sm ">{descripcion}</p> : null}
     </div>
   );
 }
