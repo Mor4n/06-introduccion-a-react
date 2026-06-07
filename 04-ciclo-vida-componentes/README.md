@@ -84,7 +84,7 @@ npm run dev
 
 ## Despliegue
 
-Se desplegó en Github Pages a partir de este repositorio, puedes ver la página a través del siguiente link:
+Se desplegó en Netlify a partir de este repositorio, puedes ver la página a través del siguiente link:
 https://fantastic-faun-444d1a.netlify.app/
 
 ## Como conclusión personal:

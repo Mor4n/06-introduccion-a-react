@@ -16,6 +16,11 @@
 
 ## Tecnologias
 
+- React
+- Vite
+- Typescript
+- TailwindCSS
+- HTML5
 
 
 ## Aprendizajes

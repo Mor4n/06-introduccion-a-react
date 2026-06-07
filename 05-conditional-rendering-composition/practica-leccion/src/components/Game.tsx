@@ -13,6 +13,7 @@ function Game() {
   const [numAdivinado, setnumAdivinado] = useState(0);
   const [intentos, setIntentos] = useState(0);
   const [message, setMessage] = useState("Que empiece el juego!");
+  const [won, setWon] = useState(false);
 
 
 
@@ -29,6 +30,7 @@ function Game() {
     if (numAdivinado === numAleatorio) {
       confetti();
       setMessage(`Ganaste :'D! el número era: ${numAleatorio} y lo lograste con ${newIntentos} intentos`);
+      setWon(true);
       return;
     }
 
@@ -53,7 +55,7 @@ function Game() {
     setMessage("Que empiece el juego!");
 
     setIntentos(0);
-
+    setWon(false);
   }
 
 
@@ -66,13 +68,24 @@ function Game() {
 
 
   return (
-    <>
-        {numAleatorio}
-        <InputNumber  setnumAdivinado={setnumAdivinado}/>
-        <button onClick={handleAdivinar}>Adivinar</button>
-        <Message msg={message}/>
-        <h2>Intentos: {intentos}</h2>
-        <RestartButton iniciarJuego={iniciarJuego}/>
+    <>  
+    <main className="min-h-screen bg-neutral-100 px-4 py-8 text-neutral-900">
+      <div className="mx-auto grid w-full max-w-sm gap-3 mt-25">
+        {!won && <InputNumber setnumAdivinado={setnumAdivinado} />}
+
+        {!won && (
+          <button className="w-full bg-blue-500 text-white px-3 py-2 text-left cursor-pointer hover:bg-blue-600" onClick={handleAdivinar}>
+            Adivinar
+          </button>
+        )}
+
+        {(message !== "Que empiece el juego!" || won) && <Message msg={message} />}
+
+        <h2 className="text-base font-normal">Intentos: {intentos}</h2>
+
+        {won && <RestartButton iniciarJuego={iniciarJuego} />}
+      </div>
+    </main>
     </>
   )
 }
