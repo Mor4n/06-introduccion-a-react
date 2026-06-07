@@ -2,15 +2,15 @@ import React from 'react'
 
 type Props = {
 
-  generarNumAleatorio: ()=> void;
+  iniciarJuego: ()=> void;
 
 }
 
-function RestartButton({generarNumAleatorio}:Props) {
+function RestartButton({iniciarJuego}:Props) {
 
 
   return (
-    <button className="cursor-pointer"onClick={()=>generarNumAleatorio()}>Reiniciar juego</button>
+    <button className="cursor-pointer"onClick={()=>iniciarJuego()}>Reiniciar juego</button>
   )
 }
 

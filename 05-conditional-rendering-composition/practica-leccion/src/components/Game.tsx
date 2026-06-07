@@ -11,23 +11,24 @@ function Game() {
   
   const [numAleatorio,setNumAleatorio] = useState(0);
   const [numAdivinado, setnumAdivinado] = useState(0);
-
+  const [intentos, setIntentos] = useState(0);
   const [message, setMessage] = useState("Que empiece el juego!");
 
 
 
 
   function handleAdivinar() {
-
     if (!Number.isInteger(numAdivinado) || numAdivinado < 1 || numAdivinado > 100) {
       setMessage("Ingrese un número entre 1 y 100");
       return;
     }
+    const newIntentos = intentos + 1;
 
+    setIntentos(newIntentos);
 
     if (numAdivinado === numAleatorio) {
       confetti();
-      setMessage(`Ganaste :'D! el número era: ${numAleatorio}`);
+      setMessage(`Ganaste :'D! el número era: ${numAleatorio} y lo lograste con ${newIntentos} intentos`);
       return;
     }
 
@@ -43,20 +44,21 @@ function Game() {
     setMessage(numAdivinado < numAleatorio
       ? "Estás muy por debajo del número aleatorio u.u"
       : "Estás muy por encima del número aleatorio u.u");
-      
-    }
+  }
 
-  function generarNumAleatorio() {
+  function iniciarJuego() {
     
     setNumAleatorio(Math.floor(Math.random() * 100) + 1) 
 
     setMessage("Que empiece el juego!");
 
+    setIntentos(0);
+
   }
 
 
     useEffect(() => {
-      generarNumAleatorio();
+      iniciarJuego();
       
     }, [])
     
@@ -69,7 +71,8 @@ function Game() {
         <InputNumber  setnumAdivinado={setnumAdivinado}/>
         <button onClick={handleAdivinar}>Adivinar</button>
         <Message msg={message}/>
-        <RestartButton generarNumAleatorio={generarNumAleatorio}/>
+        <h2>Intentos: {intentos}</h2>
+        <RestartButton iniciarJuego={iniciarJuego}/>
     </>
   )
 }
