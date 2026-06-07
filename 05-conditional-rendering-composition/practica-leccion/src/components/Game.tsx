@@ -1,9 +1,21 @@
-import React from 'react'
+import { useState } from "react";
+import InputNumber from "./InputNumber";
+
 
 function Game() {
+
+  const numeroAleatorio = Math.floor(Math.random() * 100) + 1; 
+
+  const [numAleatorio] = useState(numeroAleatorio);
+
+  const [numAdivinado, setnumAdivinado] = useState(0);
+
+
+
   return (
     <>
-        <h2 className='font-black'></h2>
+        <InputNumber  setnumAdivinado={setnumAdivinado}/>
+        {numAdivinado}
     </>
   )
 }
