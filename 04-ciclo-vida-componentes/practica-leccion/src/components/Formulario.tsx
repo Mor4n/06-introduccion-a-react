@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 
 type FormularioProps = {
     onAgregarPlaneta: (planeta: { nombre: string; descripcion: string }) => void;
@@ -6,12 +6,12 @@ type FormularioProps = {
 
 function Formulario({ onAgregarPlaneta }: FormularioProps) {
     const [formulario, setFormulario] = useState({
-        nombre: "",
-        descripcion: "",
+        nombre: '',
+        descripcion: '',
     });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
 
         setFormulario((prevState) => ({
             ...prevState,
@@ -19,7 +19,7 @@ function Formulario({ onAgregarPlaneta }: FormularioProps) {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!formulario.nombre.trim() || !formulario.descripcion.trim()) {
@@ -29,8 +29,8 @@ function Formulario({ onAgregarPlaneta }: FormularioProps) {
         onAgregarPlaneta(formulario);
 
         setFormulario({
-            nombre: "",
-            descripcion: "",
+            nombre: '',
+            descripcion: '',
         });
     };
 
