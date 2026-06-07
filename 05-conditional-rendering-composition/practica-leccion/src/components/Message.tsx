@@ -1,11 +1,15 @@
 import React from 'react'
 
-function Message() {
+type Props = {
+  msg: string
+}
+
+function Message({msg}:Props) {
 
   
 
   return (
-    <div></div>
+    <div>{msg}</div>
   )
 }
 
