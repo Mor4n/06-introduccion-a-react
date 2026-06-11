@@ -44,6 +44,12 @@ Instrucciones para el workshop/taller:
 
 ## Aprendizajes
 
+- Uso de react-router-dom
+- BrowserRouter / Routes / Route
+- Link
+- urlParams, queryParams y hashParams y hashParams (incluso como poner una página de 404 :D  con "*"!,se ya que al momento de intentar hacer el error 404, sale el error default de Netlify, no el personalizado que se creó.
+Enotnces, me hizo super chido). al momento de usar la página 404 en Netlify, al parecer, la build de dist de React,
+Por cierto, referente a esto último, tuve un pequeño problema
 
 
 ## Evidencia visual
@@ -51,6 +57,9 @@ Instrucciones para el workshop/taller:
 A continuación se muestra una captura de pantalla del proyecto funcionando:
 
 ![Captura del proyecto](./capturas/Captura1.png)
+![Captura del proyecto](./capturas/Captura2.png)
+![Captura del proyecto](./capturas/Captura3.png)
+![Error 404 - Captura del proyecto Not Found](./capturas/Captura404.png)
 
 
 ## Ejemplo de uso
@@ -79,8 +88,18 @@ npm run dev
 ## Despliegue
 
 Se desplegó en Netlify a partir de este repositorio, puedes ver la página a través del siguiente link:
-https://mor4n.github.io/06-introduccion-a-react/07-manejo-rutas
+https://grand-semolina-89cf14.netlify.app/
 
 ## Como conclusión personal:
 
+En esta práctica pude aprender sobre react-router-dom, donde aprendí desde como crear la navegación y rutas con BrowserRouter, Routes y Route, Link para navegar entre páginas sin recargar el navegador y los distintos tipos de opciones que existen para obtener datos desde el url, como lo es urlParams, queryParams y hashParams (incluso como poner una página de 404 con "*"!, :D se me hizo super chido).
+Por cierto, referente a esto último, tuve un pequeño problema al momento de usar la página 404 en Netlify, ya que al momento de intentar hacer el error 404, sale el error default de Netlify, no el personalizado que se creó.
+Enotnces, la solución que encontré, fue que en la build de dist de React que se va a subir, exista un archivo en la raíz llamado "netlify.toml", conteniendo lo siguiente:
 
+```
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+Con esto es solucionó y se pudo ver la pantalla de 404 correctamente :''D fue un taller divertido de hacer!

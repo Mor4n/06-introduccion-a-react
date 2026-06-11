@@ -7,16 +7,21 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Inicio</Link>
-        <Link to="/citas">Ver Citas</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/citas" element={<Citas />} />
-        <Route path="/cita/:id" element={<CitaDetalle />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className="max-w-2xl mx-auto p-6 font-sans">
+        <nav className="border-b-2 border-gray-200 pb-4 mb-6 flex gap-4">
+          <Link to="/" className="text-blue-600 hover:underline">Inicio</Link>
+          <Link to="/citas" className="text-blue-600 hover:underline">Ver Citas</Link>
+        </nav>
+        
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/citas" element={<Citas />} />
+            <Route path="/cita/:id" element={<CitaDetalle />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
     </BrowserRouter>
   );
 }
