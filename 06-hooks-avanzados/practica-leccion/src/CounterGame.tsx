@@ -111,23 +111,30 @@ function CounterGame() {
   }, []);
 
   return (
-    <div>
-      <h2>Contador: {state.count}</h2>
-      <label>
-        Valor a sumar:
+    <div className="p-4 max-w-sm mx-auto">
+      <h2 className="text-xl font-bold mb-4">Contador: {state.count}</h2>
+      
+      <div className="mb-4">
+        <label className="block text-sm mb-1">
+          Valor a sumar:
+        </label>
         <input
           type="number"
+          className="border border-gray-400 px-2 py-1 w-full"
           value={incrementAmount}
           onChange={(event) => setIncrementAmount(event.target.value)}
         />
-      </label>
-      <button ref={incrementBtnRef} onClick={handleIncrement}>+</button>
-      <button onClick={handleDecrement}>-</button>
-      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
-      <button onClick={handleUndo}>Deshacer</button>
+      </div>
 
-      <h3>Historial de cambios:</h3>
-      <ul>
+      <div className="flex gap-2 mb-6">
+        <button className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100" ref={incrementBtnRef} onClick={handleIncrement}>+</button>
+        <button className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100" onClick={handleDecrement}>-</button>
+        <button className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100" onClick={() => dispatch({ type: "reset" })}>Reset</button>
+        <button className="border border-gray-400 px-3 py-1 bg-gray-50 hover:bg-gray-100" onClick={handleUndo}>Deshacer</button>
+      </div>
+
+      <h3 className="font-semibold mb-2">Historial de cambios:</h3>
+      <ul className="list-disc pl-5 text-sm text-gray-700">
         {state.history.map((entry, index) => (
           <li key={index}>{entry}</li>
         ))}
