@@ -26,6 +26,6 @@ import React from 'react'
 
             <h2>Id del intervalo: {intervalId.current}</h2>
         </div>)
-        }
+        
 
 export default EjUseRef
