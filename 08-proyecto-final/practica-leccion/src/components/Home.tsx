@@ -1,8 +1,16 @@
 import React from 'react'
+import Nav from './Nav'
+import Footer from './Footer'
+import Logout from './Logout'
 
-function Home() {
+function Home( {isLogged}) {
   return (
-    <div><h1 className='text-white'>Home</h1></div>
+    <div className='pb-20'>
+
+      <Nav/>
+      
+      {isLogged ? <Logout/>: <Footer/>}
+    </div>
   )
 }
 
