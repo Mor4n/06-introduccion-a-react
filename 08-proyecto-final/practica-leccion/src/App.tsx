@@ -1,9 +1,10 @@
+import Login from "./components/Login"
 
 function App() {
 
   return (
   <>
-    <h1 className="bg-amber-200">Hola mundo</h1>
+    <Login/>
   </>
   )
 }
