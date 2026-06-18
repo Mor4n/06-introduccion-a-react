@@ -1,0 +1,38 @@
+body{
+  color: white;
+}
+.item{
+  width: 200px
+}
+
+.sidebar{
+  min-height: 80vh;
+}
+
+.content{
+  background-color: rgb(18, 18, 18);
+  flex-grow: 1;
+}
+
+
+.container{
+  display: flex;
+  flex-direction: row;
+}
+
+.controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 12vh;
+
+}
+
+.albumFlex{
+  display: flex;
+  flex-direction: row;
+}
+
+.trackList{
+  margin: 10px;
+}
