@@ -6,7 +6,8 @@ El objetivo principal es añadir un sistema de autenticación robusto (simulado 
 1. Permitir a los usuarios registrarse e/o iniciar sesión.
 2. Almacenar y gestionar la información de los usuarios de forma segura.
 3. Proteger ciertas rutas y funcionalidades para que solo sean accesibles para usuarios autenticados.
-Proyecto: Autenticación y Protección de Rutas en el Clon de Twitter
+
+- Proyecto: Autenticación y Protección de Rutas en el Clon de Twitter
 Nuestro clon simplificado de Twitter permite a los usuarios interactuar con la línea de tiempo y publicar tweets, pero carece de un sistema de autenticación. Esto significa que cualquier persona puede acceder a la aplicación y realizar acciones sin restricciones. Necesitamos implementar un sistema de autenticación para controlar el acceso a ciertas páginas y funcionalidades, asegurando que solo los usuarios registrados puedan realizar ciertas acciones.
 
 Instrucciones para el workshop/taller:
@@ -38,6 +39,10 @@ Instrucciones para el workshop/taller:
 
 ## Aprendizajes
 
+- Uso de React con Typescript + TalwindCSS para crear un proyecto clon de X
+- Uso de react-router-dom para manejo de rutas
+- Uso de localstorage para guardar usuarios y tweets
+
 
 
 ## Evidencia visual
@@ -45,6 +50,13 @@ Instrucciones para el workshop/taller:
 A continuación se muestra una captura de pantalla del proyecto funcionando:
 
 ![Captura del proyecto](./capturas/Captura1.png)
+![Captura del proyecto](./capturas/Captura2.png)
+![Captura del proyecto](./capturas/Captura3.png)
+![Captura del proyecto](./capturas/Captura4.png)
+![Captura del proyecto](./capturas/Captura5.png)
+![Captura del proyecto](./capturas/Captura6.png)
+![Captura del proyecto](./capturas/Captura7.png)
+![Captura del proyecto](./capturas/Captura8.png)
 
 
 ## Ejemplo de uso
@@ -73,8 +85,10 @@ npm run dev
 ## Despliegue
 
 Se desplegó en Netlify a partir de este repositorio, puedes ver la página a través del siguiente link:
-https://mor4n.github.io/06-introduccion-a-react/08-proyecto-final
+https://tangerine-praline-0600d8.netlify.app/
 
 ## Como conclusión personal:
 
+Este proyecto se me hizo un poco complicado en general de hacer, tanto la parte de funcionalidad como la parte de diseño con TailwindCSS, ya que aun no me he terminado de familiarizar con esta forma de aplicar CSS del todo.
+La parte donde más tuve trabas fue al momento de querer mostrar los Tweets, inicialmente pude hacer todo el proceso que estuvimos viendo de rutas, de renderizado condicional, con eso no hubo problema, solamente fue que me había olvidado completamente como podría haber renderizado los tweets a partir del localstorage, pero al final se pudo realizar ;w; también en otro lado donde me trabé, fue al momento de escribirle el tipado en props a cada interfaz, en algunas partes medio me confundía (como con icons en el nav) y por otro lado, probablemente no haya sido la mejor implementación, en ciertos puntos siento que pude haber tenido más componentes para separar aún más la lógica, y en otros lados siento que estuve pasando demasiadas veces los estados de isLogged, probablemente esto lo pueda corregir cuando veamos el estado global en el siguiente módulo, pero hasta ahora a pesar de todo, siento que me quedo bastante satisfecho con el resultado final :'D!
 

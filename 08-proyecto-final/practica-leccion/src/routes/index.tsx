@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Route, Routes,Navigate,Outlet } from "react-router-dom"
 import Home from '../components/Home'
 import Login from '../components/Login'
-import Profile from '../components/Profile'
 import Signup from '../components/Signup'
+import ProfilePage from '../components/ProfilePage'
 
 function RoutesIndex() {
 
@@ -27,7 +27,7 @@ function RoutesIndex() {
 
         <Route element={isLogged ? <Outlet/> : <Navigate to="/"/>}>
 
-            <Route path='/profile' element={<Profile/>}/>
+            <Route path='/profile' element={ <ProfilePage isLogged={isLogged} setIsLogged={setIsLogged}/>}/>
 
         </Route>
 

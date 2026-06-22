@@ -40,7 +40,8 @@ function Profile() {
         <div className='mt-6 w-full text-center'>
             <button 
                 onClick={() => setEditMode(true)}
-                className='text-white bg-blue-500 py-2 px-10 rounded-full font-bold cursor-pointer hover:bg-blue-600 transition'
+                
+                className='text-black bg-[#eff3f4] py-2 px-10 rounded-full font-bold cursor-pointer  hover:bg-[#d7dbdc]  transition'
             >
                 Cambiar imagen
             </button>
@@ -57,13 +58,13 @@ function Profile() {
             <div className='flex gap-2'>
                 <button 
                     onClick={handleUpdateImg}
-                    className='flex-1 bg-white text-black py-2 rounded-full font-bold hover:bg-gray-200'
+                    className='flex-1 bg-white text-black py-2 rounded-full font-bold hover:bg-gray-200 cursor-pointer'
                 >
                     Guardar
                 </button>
                 <button 
                     onClick={() => setEditMode(false)}
-                    className='flex-1 bg-gray-800 text-white py-2 rounded-full font-bold hover:bg-gray-700'
+                    className='flex-1 bg-gray-800 text-white py-2 rounded-full font-bold hover:bg-gray-700 cursor-pointer' 
                 >
                     Cancelar
                 </button>

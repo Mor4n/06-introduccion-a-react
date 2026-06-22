@@ -1,7 +1,5 @@
-import React from 'react'
 import Nav from './Nav'
 import Footer from './Footer'
-import Logout from './Logout'
 import TweetPost from './TweetPost'
 import TweetFeed from './TweetFeed'
 

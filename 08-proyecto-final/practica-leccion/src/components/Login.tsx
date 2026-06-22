@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 interface LoginProps {
@@ -8,8 +8,8 @@ interface LoginProps {
 
 function Login( {setIsLogged, isLogged}: LoginProps) {
 
-  const [user,setUser] = useState(null);
-  const [pass,setPass] = useState(null);
+  const [user,setUser] = useState('');
+  const [pass,setPass] = useState('');
   const navigate = useNavigate();
 
   function verificarDatos() {
@@ -18,7 +18,8 @@ function Login( {setIsLogged, isLogged}: LoginProps) {
 
       // console.log(user," ", pass);
     let arregloUsuarios = []
-    arregloUsuarios = JSON.parse(localStorage.getItem('usuarios'))||[];
+    const storedUsers = localStorage.getItem('usuarios');
+    arregloUsuarios = storedUsers ? JSON.parse(storedUsers) : [];
 
     arregloUsuarios.forEach( (el: any) => {
         if(el.user === user){

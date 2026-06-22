@@ -48,7 +48,7 @@ function TweetPost({ isLogged }: TweetPostProps) {
             <button
               onClick={handlePost}
               disabled={!content.trim()}
-              className='bg-blue-500 text-white px-5 py-2 rounded-full font-bold hover:bg-blue-600 disabled:opacity-50 transition'
+              className='bg-[#eff3f4] text-black px-5 py-2 rounded-full font-bold hover:bg-[#d7dbdc] disabled:opacity-50 transition'
             >
               Postear
             </button>
