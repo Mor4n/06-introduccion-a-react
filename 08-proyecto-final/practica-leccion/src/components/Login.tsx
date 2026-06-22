@@ -1,14 +1,51 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-function Login( {}) {
+function Login( {setIsLogged, isLogged}) {
 
   const [user,setUser] = useState(null);
   const [pass,setPass] = useState(null);
+  const navigate = useNavigate();
 
   function verificarDatos() {
-    console.log(user," ", pass);
+    console.log(isLogged);
+    
+
+      // console.log(user," ", pass);
+    let arregloUsuarios = []
+    arregloUsuarios = JSON.parse(localStorage.getItem('usuarios'))||[];
+
+    arregloUsuarios.filter( el => {
+        if(el.user === user){
+          // Usuario encontrado, toca checar la contraseña
+          if(el.pass === pass){
+            console.log("Login exitoso");
+            setIsLogged(true)
+             navigate("/")
+            return;
+
+          }else{
+            console.log("Contraseña incorrecta");
+          }
+
+
+
+
+
+        }else{
+          console.log("Usuario no encontrado");
+          
+
+        }
+
+    })
+
+
     
   }
+
+
+
 
   return (
     <div className='mt-25'>

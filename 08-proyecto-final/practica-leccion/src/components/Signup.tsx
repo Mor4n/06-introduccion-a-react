@@ -21,7 +21,7 @@ function Signup() {
 
     localStorage.setItem('usuarios',JSON.stringify(arregloUsuarios));
     
-    console.log(arregloUsuarios);
+    // console.log(arregloUsuarios);
     
 
     

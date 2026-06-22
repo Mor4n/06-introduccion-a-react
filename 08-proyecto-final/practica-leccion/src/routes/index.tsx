@@ -7,14 +7,14 @@ import Signup from '../components/Signup'
 
 function RoutesIndex() {
 
-    const [isLogged, setIsLogged] = useState(true);
+    const [isLogged, setIsLogged] = useState(false);
 
   return (
     <Routes>
 
 
 
-        <Route path='/' element={<Home isLogged={isLogged}/>}/>
+        <Route path='/' element={<Home isLogged={isLogged} setIsLogged={setIsLogged}/>}/>
         
 
         {/* // Rutas protegida */}
@@ -28,10 +28,10 @@ function RoutesIndex() {
 
         </Route>
 
-        {/* si tengo sesión activa, no quiero que pueda entrar a login o sign up a menos que tenga la sesión cerrada */}
-        <Route element={isLogged ? <Outlet/> : <Navigate to="/"/>}>
+        {/* si tengo la sesión iniciada, no quiero que pueda entrar a login o sign up a menos que tenga la sesión cerrada */}
+        <Route element={!isLogged ? <Outlet/> : <Navigate to="/"/>}>
 
-            <Route path='/login' element={<Login/>}/>
+            <Route path='/login' element={<Login isLogged={isLogged} setIsLogged={setIsLogged}/>}/>
             <Route path='/signup' element={<Signup/>}/>
             
         </Route>
