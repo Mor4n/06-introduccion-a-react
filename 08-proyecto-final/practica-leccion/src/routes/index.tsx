@@ -29,7 +29,7 @@ function RoutesIndex() {
         </Route>
 
         {/* si tengo sesión activa, no quiero que pueda entrar a login o sign up a menos que tenga la sesión cerrada */}
-        <Route element={!isLogged ? <Outlet/> : <Navigate to="/"/>}>
+        <Route element={isLogged ? <Outlet/> : <Navigate to="/"/>}>
 
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
