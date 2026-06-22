@@ -1,7 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function Logout({isLogged, setIsLogged}) {
+type LogoutProps ={
+  isLogged: boolean;
+  setIsLogged: (value: boolean) => void;
+}
+
+function Logout({isLogged, setIsLogged}:LogoutProps) {
 
   function cerrarSesion() {
     setIsLogged(false);

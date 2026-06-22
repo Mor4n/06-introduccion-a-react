@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function Login( {setIsLogged, isLogged}) {
+interface LoginProps {
+  isLogged: boolean;
+  setIsLogged: (value: boolean) => void;
+}
+
+function Login( {setIsLogged, isLogged}: LoginProps) {
 
   const [user,setUser] = useState(null);
   const [pass,setPass] = useState(null);
@@ -15,15 +20,16 @@ function Login( {setIsLogged, isLogged}) {
     let arregloUsuarios = []
     arregloUsuarios = JSON.parse(localStorage.getItem('usuarios'))||[];
 
-    arregloUsuarios.filter( el => {
+    arregloUsuarios.forEach( (el: any) => {
         if(el.user === user){
           // Usuario encontrado, toca checar la contraseña
           if(el.pass === pass){
             console.log("Login exitoso");
+           
+            localStorage.setItem('usuarioActivo', JSON.stringify(el));
             setIsLogged(true)
              navigate("/")
             return;
-
           }else{
             console.log("Contraseña incorrecta");
           }

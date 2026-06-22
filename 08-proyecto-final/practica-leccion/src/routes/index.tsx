@@ -7,7 +7,10 @@ import Signup from '../components/Signup'
 
 function RoutesIndex() {
 
-    const [isLogged, setIsLogged] = useState(false);
+    // Inicializamos el estado basándonos en si hay un usuario activo en localStorage
+    const [isLogged, setIsLogged] = useState(() => {
+        return localStorage.getItem('usuarioActivo') !== null;
+    });
 
   return (
     <Routes>
